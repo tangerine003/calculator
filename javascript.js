@@ -51,20 +51,34 @@ const calcButtons = document.querySelectorAll(".calc-button");
 calcButtons.forEach((button) => {
   button.addEventListener("mousedown", function (e) {
     if (!isNaN(e.target.getAttribute("data-value"))) {
-      if (num1.textContent) {
+      if (displayScreen.contains(num1)) {
         num2.textContent = e.target.getAttribute("data-value");
         displayScreen.appendChild(num2);
       } else {
-        num1.textContent = e.target.getAttribute("data-value");
-        displayScreen.appendChild(num1);
+        if (displayScreen.contains(resultant)) {
+          num2.textContent = e.target.getAttribute("data-value");
+          displayScreen.appendChild(num2);
+        } else {
+          num1.textContent = e.target.getAttribute("data-value");
+          displayScreen.appendChild(num1);
+        }
       }
     } else if (e.target.getAttribute("data-value") == "=") {
-      resultant.textContent = operate(
-        num1.textContent,
-        operator.textContent,
-        num2.textContent
-      );
-      displayScreen.removeChild(num1);
+      if (displayScreen.contains(num1)) {
+        resultant.textContent = operate(
+          num1.textContent,
+          operator.textContent,
+          num2.textContent
+        );
+        displayScreen.removeChild(num1);
+      } else {
+        resultant.textContent = operate(
+          resultant.textContent,
+          operator.textContent,
+          num2.textContent
+        );
+        displayScreen.removeChild(resultant);
+      }
       displayScreen.removeChild(operator);
       displayScreen.removeChild(num2);
       displayScreen.appendChild(resultant);
