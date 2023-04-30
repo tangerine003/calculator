@@ -39,11 +39,13 @@ function operate(num1, operator, num2) {
       console.log("error");
   }
 }
+const toBeDisplayed = document.createElement("h3");
+const displayScreen = document.querySelector(".display");
 
 const calcButtons = document.querySelectorAll(".calc-button");
 calcButtons.forEach((button) => {
   button.addEventListener("mousedown", function (e) {
-    let a = e.target.getAttribute("data-value");
-    console.log(a);
+    toBeDisplayed.textContent = e.target.getAttribute("data-value");
+    displayScreen.appendChild(toBeDisplayed);
   });
 });
