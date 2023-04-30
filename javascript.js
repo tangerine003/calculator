@@ -19,22 +19,22 @@ function operate(num1, operator, num2) {
   switch (operator) {
     case "+":
       result = add(num1, num2);
-      console.log(result);
+      return result;
       break;
 
     case "-":
       result = subtract(num1, num2);
-      console.log(result);
+      return result;
       break;
 
     case "*":
       result = multiply(num1, num2);
-      console.log(result);
+      return result;
       break;
 
     case "/":
       result = divide(num1, num2);
-      console.log(result);
+      return result;
       break;
 
     default:
@@ -64,6 +64,10 @@ calcButtons.forEach((button) => {
         operator.textContent,
         num2.textContent
       );
+      displayScreen.removeChild(num1);
+      displayScreen.removeChild(operator);
+      displayScreen.removeChild(num2);
+      displayScreen.appendChild(resultant);
     } else {
       operator.textContent = e.target.getAttribute("data-value");
       displayScreen.appendChild(operator);
