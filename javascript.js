@@ -13,6 +13,8 @@ function divide(num1, num2) {
 }
 
 function operate(num1, operator, num2) {
+  num1 = Number(num1);
+  num2 = Number(num2);
   let result;
   switch (operator) {
     case "+":
