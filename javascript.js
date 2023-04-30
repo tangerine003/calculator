@@ -39,3 +39,11 @@ function operate(num1, operator, num2) {
       console.log("error");
   }
 }
+
+const calcButtons = document.querySelectorAll(".calc-button");
+calcButtons.forEach((button) => {
+  button.addEventListener("mousedown", function (e) {
+    let a = e.target.getAttribute("data-value");
+    console.log(a);
+  });
+});
