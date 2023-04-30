@@ -52,12 +52,24 @@ calcButtons.forEach((button) => {
   button.addEventListener("mousedown", function (e) {
     if (!isNaN(e.target.getAttribute("data-value"))) {
       if (displayScreen.contains(num1)) {
-        num2.textContent = e.target.getAttribute("data-value");
-        displayScreen.appendChild(num2);
+        if (displayScreen.contains(operator)) {
+          if (displayScreen.contains(num2)) {
+            num2.textContent += e.target.getAttribute("data-value");
+          } else {
+            num2.textContent = e.target.getAttribute("data-value");
+            displayScreen.appendChild(num2);
+          }
+        } else {
+          num1.textContent += e.target.getAttribute("data-value");
+        }
       } else {
         if (displayScreen.contains(resultant)) {
-          num2.textContent = e.target.getAttribute("data-value");
-          displayScreen.appendChild(num2);
+          if (displayScreen.contains(num2)) {
+            num2.textContent += e.target.getAttribute("data-value");
+          } else {
+            num2.textContent = e.target.getAttribute("data-value");
+            displayScreen.appendChild(num2);
+          }
         } else {
           num1.textContent = e.target.getAttribute("data-value");
           displayScreen.appendChild(num1);
