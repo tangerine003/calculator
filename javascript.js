@@ -39,13 +39,25 @@ function operate(num1, operator, num2) {
       console.log("error");
   }
 }
-const toBeDisplayed = document.createElement("h3");
+const num1 = document.createElement("h3");
+const operator = document.createElement("h3");
+const num2 = document.createElement("h3");
 const displayScreen = document.querySelector(".display");
 
 const calcButtons = document.querySelectorAll(".calc-button");
 calcButtons.forEach((button) => {
   button.addEventListener("mousedown", function (e) {
-    toBeDisplayed.textContent = e.target.getAttribute("data-value");
-    displayScreen.appendChild(toBeDisplayed);
+    if (!isNaN(e.target.getAttribute("data-value"))) {
+      if (num1.textContent) {
+        num2.textContent = e.target.getAttribute("data-value");
+        displayScreen.appendChild(num2);
+      } else {
+        num1.textContent = e.target.getAttribute("data-value");
+        displayScreen.appendChild(num1);
+      }
+    } else {
+      operator.textContent = e.target.getAttribute("data-value");
+      displayScreen.appendChild(operator);
+    }
   });
 });
