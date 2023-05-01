@@ -94,6 +94,13 @@ calcButtons.forEach((button) => {
       displayScreen.removeChild(operator);
       displayScreen.removeChild(num2);
       displayScreen.appendChild(resultant);
+    } else if (e.target.getAttribute("data-value") == ".") {
+      if (displayScreen.lastElementChild == num2) {
+        num2.textContent += e.target.getAttribute("data-value");
+      }
+      if (displayScreen.lastElementChild == num1) {
+        num1.textContent += e.target.getAttribute("data-value");
+      }
     } else {
       if (displayScreen.contains(num2)) {
         if (displayScreen.contains(num1)) {
