@@ -128,6 +128,24 @@ topButtons.forEach((button) => {
     const topButton = e.target.getAttribute("data-value");
     if (topButton == "AC") {
       displayScreen.textContent = "";
+    } else {
+      if (displayScreen.lastElementChild == num1) {
+        const textContentArray = Array.from(num1.textContent);
+        textContentArray.pop();
+        num1.textContent = textContentArray.join("");
+      } else if (displayScreen.lastElementChild == operator) {
+        const textContentArray = Array.from(operator.textContent);
+        textContentArray.pop();
+        operator.textContent = textContentArray.join("");
+      } else if (displayScreen.lastElementChild == num2) {
+        const textContentArray = Array.from(num2.textContent);
+        textContentArray.pop();
+        num2.textContent = textContentArray.join("");
+      } else {
+        const textContentArray = Array.from(resultant.textContent);
+        textContentArray.pop();
+        resultant.textContent = textContentArray.join("");
+      }
     }
   });
 });
