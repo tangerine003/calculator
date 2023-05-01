@@ -95,6 +95,26 @@ calcButtons.forEach((button) => {
       displayScreen.removeChild(num2);
       displayScreen.appendChild(resultant);
     } else {
+      if (displayScreen.contains(num2)) {
+        if (displayScreen.contains(num1)) {
+          resultant.textContent = operate(
+            num1.textContent,
+            operator.textContent,
+            num2.textContent
+          );
+          displayScreen.removeChild(num1);
+        } else {
+          resultant.textContent = operate(
+            resultant.textContent,
+            operator.textContent,
+            num2.textContent
+          );
+          displayScreen.removeChild(resultant);
+        }
+        displayScreen.removeChild(operator);
+        displayScreen.removeChild(num2);
+        displayScreen.appendChild(resultant);
+      }
       operator.textContent = e.target.getAttribute("data-value");
       displayScreen.appendChild(operator);
     }
