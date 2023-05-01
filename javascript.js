@@ -120,3 +120,14 @@ calcButtons.forEach((button) => {
     }
   });
 });
+
+const topButtons = document.querySelectorAll(".top-button");
+
+topButtons.forEach((button) => {
+  button.addEventListener("click", function (e) {
+    const topButton = e.target.getAttribute("data-value");
+    if (topButton == "AC") {
+      displayScreen.textContent = "";
+    }
+  });
+});
