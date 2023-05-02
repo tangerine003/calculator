@@ -47,6 +47,9 @@ const num2 = document.createElement("h3");
 const resultant = document.createElement("h3");
 const displayScreen = document.querySelector(".display");
 
+const errorMessage = document.createElement("h3");
+errorMessage.textContent = "ERROR";
+
 let noOfPointsInOperand1 = 0;
 let noOfPointsInOperand2 = 0;
 
@@ -80,24 +83,29 @@ calcButtons.forEach((button) => {
         }
       }
     } else if (e.target.getAttribute("data-value") == "=") {
-      if (displayScreen.contains(num1)) {
-        resultant.textContent = operate(
-          num1.textContent,
-          operator.textContent,
-          num2.textContent
-        );
-        displayScreen.removeChild(num1);
+      if (displayScreen.lastElementChild == num2) {
+        if (displayScreen.contains(num1)) {
+          resultant.textContent = operate(
+            num1.textContent,
+            operator.textContent,
+            num2.textContent
+          );
+          displayScreen.removeChild(num1);
+        } else {
+          resultant.textContent = operate(
+            resultant.textContent,
+            operator.textContent,
+            num2.textContent
+          );
+          displayScreen.removeChild(resultant);
+        }
+        displayScreen.removeChild(operator);
+        displayScreen.removeChild(num2);
+        displayScreen.appendChild(resultant);
       } else {
-        resultant.textContent = operate(
-          resultant.textContent,
-          operator.textContent,
-          num2.textContent
-        );
-        displayScreen.removeChild(resultant);
+        displayScreen.textContent = "";
+        displayScreen.appendChild(errorMessage);
       }
-      displayScreen.removeChild(operator);
-      displayScreen.removeChild(num2);
-      displayScreen.appendChild(resultant);
     } else if (e.target.getAttribute("data-value") == ".") {
       if (displayScreen.lastElementChild == num2) {
         if (noOfPointsInOperand2 >= 1) {
