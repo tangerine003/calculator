@@ -15,30 +15,35 @@ function divide(num1, num2) {
 function operate(num1, operator, num2) {
   num1 = Number(num1);
   num2 = Number(num2);
-  let result;
-  switch (operator) {
-    case "+":
-      result = add(num1, num2);
-      return result;
-      break;
+  if (num2 == 0 && operator == "/") {
+    displayScreen.textContent = "";
+    displayScreen.append(confusedEmoji);
+  } else {
+    let result;
+    switch (operator) {
+      case "+":
+        result = add(num1, num2);
+        return result;
+        break;
 
-    case "-":
-      result = subtract(num1, num2);
-      return result;
-      break;
+      case "-":
+        result = subtract(num1, num2);
+        return result;
+        break;
 
-    case "*":
-      result = multiply(num1, num2);
-      return result;
-      break;
+      case "*":
+        result = multiply(num1, num2);
+        return result;
+        break;
 
-    case "/":
-      result = divide(num1, num2);
-      return result;
-      break;
+      case "/":
+        result = divide(num1, num2);
+        return result;
+        break;
 
-    default:
-      console.log("error");
+      default:
+        console.log("error");
+    }
   }
 }
 const num1 = document.createElement("h3");
@@ -52,6 +57,11 @@ errorMessage.textContent = "ERROR";
 
 let noOfPointsInOperand1 = 0;
 let noOfPointsInOperand2 = 0;
+
+const confusedEmoji = document.createElement("img");
+confusedEmoji.src = "./imgs/path1.png";
+confusedEmoji.width = 50;
+confusedEmoji.setAttribute("class", "astonished-face");
 
 const calcButtons = document.querySelectorAll(".calc-button");
 calcButtons.forEach((button) => {
@@ -78,6 +88,7 @@ calcButtons.forEach((button) => {
             displayScreen.appendChild(num2);
           }
         } else {
+          displayScreen.textContent = "";
           num1.textContent = e.target.getAttribute("data-value");
           displayScreen.appendChild(num1);
         }
@@ -90,18 +101,24 @@ calcButtons.forEach((button) => {
             operator.textContent,
             num2.textContent
           );
-          displayScreen.removeChild(num1);
+          if (!(displayScreen.lastElementChild == confusedEmoji)) {
+            displayScreen.removeChild(num1);
+          }
         } else {
           resultant.textContent = operate(
             resultant.textContent,
             operator.textContent,
             num2.textContent
           );
-          displayScreen.removeChild(resultant);
+          if (!(displayScreen.lastElementChild == confusedEmoji)) {
+            displayScreen.removeChild(resultant);
+          }
         }
-        displayScreen.removeChild(operator);
-        displayScreen.removeChild(num2);
-        displayScreen.appendChild(resultant);
+        if (!(displayScreen.lastElementChild == confusedEmoji)) {
+          displayScreen.removeChild(operator);
+          displayScreen.removeChild(num2);
+          displayScreen.appendChild(resultant);
+        }
       } else {
         displayScreen.textContent = "";
         displayScreen.appendChild(errorMessage);
@@ -143,6 +160,9 @@ calcButtons.forEach((button) => {
         displayScreen.removeChild(operator);
         displayScreen.removeChild(num2);
         displayScreen.appendChild(resultant);
+      }
+      if (displayScreen.lastElementChild == confusedEmoji) {
+        displayScreen.textContent = "";
       }
       operator.textContent = e.target.getAttribute("data-value");
       displayScreen.appendChild(operator);
