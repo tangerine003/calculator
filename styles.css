@@ -18,7 +18,7 @@ body {
 .calculator {
   width: 25.009rem;
   height: 40.081rem;
-  background-color: rgba(100, 62, 242, 68%);
+  background-color: #643ef2ad;
   border-radius: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -62,7 +62,7 @@ body {
   background-color: #f39c6b;
 }
 
-img {
+img.backspace-img {
   width: 2.299rem;
 
   filter: invert(99%) sepia(2%) saturate(163%) hue-rotate(149deg) brightness(117%)
@@ -95,4 +95,8 @@ h3 {
   font-weight: bold;
   margin: 0rem;
   font-family: "Inter", sans-serif;
+}
+
+.astonished-face {
+  margin: 0.971rem;
 }
