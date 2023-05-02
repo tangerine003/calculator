@@ -47,6 +47,9 @@ const num2 = document.createElement("h3");
 const resultant = document.createElement("h3");
 const displayScreen = document.querySelector(".display");
 
+let noOfPointsInOperand1 = 0;
+let noOfPointsInOperand2 = 0;
+
 const calcButtons = document.querySelectorAll(".calc-button");
 calcButtons.forEach((button) => {
   button.addEventListener("mousedown", function (e) {
@@ -67,6 +70,7 @@ calcButtons.forEach((button) => {
           if (displayScreen.contains(num2)) {
             num2.textContent += e.target.getAttribute("data-value");
           } else {
+            noOfPointsInOperand2 = 0;
             num2.textContent = e.target.getAttribute("data-value");
             displayScreen.appendChild(num2);
           }
@@ -96,10 +100,20 @@ calcButtons.forEach((button) => {
       displayScreen.appendChild(resultant);
     } else if (e.target.getAttribute("data-value") == ".") {
       if (displayScreen.lastElementChild == num2) {
-        num2.textContent += e.target.getAttribute("data-value");
+        if (noOfPointsInOperand2 >= 1) {
+          e.target.setAttribute("data-disabled", "true");
+        } else {
+          num2.textContent += e.target.getAttribute("data-value");
+          noOfPointsInOperand2++;
+        }
       }
       if (displayScreen.lastElementChild == num1) {
-        num1.textContent += e.target.getAttribute("data-value");
+        if (noOfPointsInOperand1 >= 1) {
+          e.target.setAttribute("data-disabled", "true");
+        } else {
+          num1.textContent += e.target.getAttribute("data-value");
+          noOfPointsInOperand1++;
+        }
       }
     } else {
       if (displayScreen.contains(num2)) {
@@ -134,6 +148,8 @@ topButtons.forEach((button) => {
   button.addEventListener("click", function (e) {
     const topButton = e.target.getAttribute("data-value");
     if (topButton == "AC") {
+      noOfPointsInOperand1 = 0;
+      noOfPointsInOperand2 = 0;
       displayScreen.textContent = "";
     } else {
       if (displayScreen.lastElementChild == num1) {
