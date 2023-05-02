@@ -66,6 +66,8 @@ confusedEmoji.setAttribute("class", "astonished-face");
 const calcButtons = document.querySelectorAll(".calc-button");
 calcButtons.forEach((button) => {
   button.addEventListener("mousedown", function (e) {
+    let sound = new Audio("./audio-effects/select-sound-121244.mp3");
+    sound.play();
     if (!isNaN(e.target.getAttribute("data-value"))) {
       if (displayScreen.contains(num1)) {
         if (displayScreen.contains(operator)) {
@@ -174,6 +176,8 @@ const topButtons = document.querySelectorAll(".top-button");
 
 topButtons.forEach((button) => {
   button.addEventListener("click", function (e) {
+    let sound = new Audio("./audio-effects/select-sound-121244.mp3");
+    sound.play();
     const topButton = e.target.getAttribute("data-value");
     if (topButton == "AC") {
       noOfPointsInOperand1 = 0;
