@@ -48,7 +48,7 @@ body {
   width: 11.672rem;
   height: 4.792rem;
   border-radius: 0.95rem;
-  color: #ffffff;
+  color: #000000;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -56,11 +56,11 @@ body {
 }
 
 .clear {
-  background-color: #ffd828;
+  background-color: #f2efff;
 }
 
 .backspace {
-  background-color: #f39c6b;
+  background-color: #000000;
 }
 
 img.backspace-img {
