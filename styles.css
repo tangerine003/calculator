@@ -4,7 +4,8 @@ html {
 
 body {
   margin: 0;
-  background-color: #a189fd;
+  /* background-color: #a189fd; */
+  background-image: linear-gradient(to bottom right, #7f04cd, #f2efff);
   font-size: 2.3rem;
   font-family: "Inter", sans-serif;
 }
