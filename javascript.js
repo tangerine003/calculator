@@ -58,6 +58,9 @@ errorMessage.textContent = "ERROR";
 let noOfPointsInOperand1 = 0;
 let noOfPointsInOperand2 = 0;
 
+num1.textContent = 0;
+displayScreen.append(num1);
+
 const confusedEmoji = document.createElement("img");
 confusedEmoji.src = "./imgs/path1.png";
 confusedEmoji.width = 50;
@@ -78,7 +81,11 @@ calcButtons.forEach((button) => {
             displayScreen.appendChild(num2);
           }
         } else {
-          num1.textContent += e.target.getAttribute("data-value");
+          if (num1.textContent == "0") {
+            num1.textContent = e.target.getAttribute("data-value");
+          } else {
+            num1.textContent += e.target.getAttribute("data-value");
+          }
         }
       } else {
         if (displayScreen.contains(resultant)) {
@@ -183,6 +190,8 @@ topButtons.forEach((button) => {
       noOfPointsInOperand1 = 0;
       noOfPointsInOperand2 = 0;
       displayScreen.textContent = "";
+      num1.textContent = 0;
+      displayScreen.append(num1);
     } else {
       if (displayScreen.lastElementChild == num1) {
         const textContentArray = Array.from(num1.textContent);
