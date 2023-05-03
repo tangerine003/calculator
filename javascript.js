@@ -140,13 +140,18 @@ calcButtons.forEach((button) => {
           num2.textContent += e.target.getAttribute("data-value");
           noOfPointsInOperand2++;
         }
-      }
-      if (displayScreen.lastElementChild == num1) {
+      } else if (displayScreen.lastElementChild == num1) {
         if (noOfPointsInOperand1 >= 1) {
           e.target.setAttribute("data-disabled", "true");
         } else {
           num1.textContent += e.target.getAttribute("data-value");
           noOfPointsInOperand1++;
+        }
+      } else {
+        if (noOfPointsInOperand2 < 1) {
+          num2.textContent = "0" + e.target.getAttribute("data-value");
+          noOfPointsInOperand2++;
+          displayScreen.appendChild(num2);
         }
       }
     } else {
@@ -175,6 +180,7 @@ calcButtons.forEach((button) => {
       }
       operator.textContent = e.target.getAttribute("data-value");
       displayScreen.appendChild(operator);
+      noOfPointsInOperand2 = 0;
     }
   });
 });
@@ -195,7 +201,10 @@ topButtons.forEach((button) => {
     } else {
       if (displayScreen.lastElementChild == num1) {
         const textContentArray = Array.from(num1.textContent);
-        textContentArray.pop();
+        const PoppedElement = textContentArray.pop();
+        if (PoppedElement == ".") {
+          noOfPointsInOperand1 = 0;
+        }
         num1.textContent = textContentArray.join("");
       } else if (displayScreen.lastElementChild == operator) {
         const textContentArray = Array.from(operator.textContent);
@@ -203,7 +212,10 @@ topButtons.forEach((button) => {
         operator.textContent = textContentArray.join("");
       } else if (displayScreen.lastElementChild == num2) {
         const textContentArray = Array.from(num2.textContent);
-        textContentArray.pop();
+        const PoppedElement = textContentArray.pop();
+        if (PoppedElement == ".") {
+          noOfPointsInOperand2 = 0;
+        }
         num2.textContent = textContentArray.join("");
       } else {
         const textContentArray = Array.from(resultant.textContent);
