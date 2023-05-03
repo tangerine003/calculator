@@ -148,6 +148,13 @@ calcButtons.forEach((button) => {
           noOfPointsInOperand1++;
           displayScreen.appendChild(num1);
         }
+      } else if (displayScreen.lastElementChild == confusedEmoji) {
+        displayScreen.removeChild(confusedEmoji);
+        if (noOfPointsInOperand1 < 1) {
+          num1.textContent = "0" + e.target.getAttribute("data-value");
+          noOfPointsInOperand1++;
+          displayScreen.appendChild(num1);
+        }
       } else {
         if (noOfPointsInOperand2 < 1) {
           num2.textContent = "0" + e.target.getAttribute("data-value");
@@ -188,7 +195,6 @@ calcButtons.forEach((button) => {
     }
   });
 });
-
 const topButtons = document.querySelectorAll(".top-button");
 topButtons.forEach((button) => {
   button.addEventListener("click", function (e) {
