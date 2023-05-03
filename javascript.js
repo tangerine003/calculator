@@ -128,6 +128,10 @@ calcButtons.forEach((button) => {
           displayScreen.removeChild(num2);
           displayScreen.appendChild(resultant);
         }
+      } else if (displayScreen.lastElementChild == num1) {
+        num1.textContent = num1.textContent;
+      } else if (displayScreen.lastElementChild == resultant) {
+        resultant.textContent = resultant.textContent;
       } else {
         displayScreen.textContent = "";
         displayScreen.appendChild(errorMessage);
