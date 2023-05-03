@@ -135,6 +135,7 @@ calcButtons.forEach((button) => {
       } else {
         displayScreen.textContent = "";
         displayScreen.appendChild(errorMessage);
+        noOfPointsInOperand1 = 0;
       }
     } else if (e.target.getAttribute("data-value") == ".") {
       if (displayScreen.lastElementChild == num2) {
@@ -150,6 +151,13 @@ calcButtons.forEach((button) => {
         } else {
           num1.textContent += e.target.getAttribute("data-value");
           noOfPointsInOperand1++;
+        }
+      } else if (displayScreen.lastElementChild == errorMessage) {
+        displayScreen.removeChild(errorMessage);
+        if (noOfPointsInOperand1 < 1) {
+          num1.textContent = "0" + e.target.getAttribute("data-value");
+          noOfPointsInOperand1++;
+          displayScreen.appendChild(num1);
         }
       } else {
         if (noOfPointsInOperand2 < 1) {
@@ -181,6 +189,9 @@ calcButtons.forEach((button) => {
       }
       if (displayScreen.lastElementChild == confusedEmoji) {
         displayScreen.textContent = "";
+      }
+      if (displayScreen.lastElementChild == errorMessage) {
+        displayScreen.removeChild(errorMessage);
       }
       operator.textContent = e.target.getAttribute("data-value");
       displayScreen.appendChild(operator);
