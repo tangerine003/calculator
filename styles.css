@@ -85,6 +85,11 @@ img.backspace-img {
   justify-content: center;
 }
 
+.calc-button:hover,
+.top-button:hover {
+  transform: scale(1.1, 1.1);
+}
+
 .operand {
   background-color: #000000;
   color: #ffffff;
