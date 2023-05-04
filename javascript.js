@@ -73,7 +73,9 @@ calcButtons.forEach((button) => {
 
     if (
       num1.offsetWidth + operator.offsetWidth + num2.offsetWidth >=
-      displayScreen.offsetWidth - 20
+        displayScreen.offsetWidth - 20 ||
+      resultant.offsetWidth + operator.offsetWidth + num2.offsetWidth >=
+        displayScreen.offsetWidth - 20
     ) {
       displayScreen.textContent = "";
       errorMessage.textContent = "OVERFLOW ERROR";
